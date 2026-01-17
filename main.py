@@ -61,21 +61,21 @@ def initialize_file():
         
         # Write headers
         headers = [
-            "date",
-            "league",
-            "team_1_name",
-            "team_2_name",
-            "bet_description",
-            "bet_type",
-            "bet_amount",
-            "odds_team_1",
-            "odds_team_2",
-            "implied_prob_team_1",
-            "implied_prob_team_2",
-            "sportsbook",
-            "status",
-            "payout_amount",
-            "notes"
+            "Date",
+            "League",
+            "Team 1 Name",
+            "Team 2 Name",
+            "Bet Description",
+            "Bet Type",
+            "Bet Amount",
+            "Odds Team 1",
+            "Odds Team 2",
+            "Implied Prob Team 1 %",
+            "Implied Prob Team 2 %",
+            "Sportsbook",
+            "Status",
+            "Payout Amount",
+            "Notes"
         ]
         ws.append(headers)
         
