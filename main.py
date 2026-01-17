@@ -8,7 +8,7 @@ FILE_NAME = "weekly_bids.xlsx"
 # Dropdown options
 LEAGUES = ["NFL", "NBA", "MLB", "NHL", "Soccer", "College Football", "College Basketball", "MMA", "Boxing", "Other"]
 BET_TYPES = ["Moneyline", "Spread", "Over/Under", "Parlay", "Prop", "Teaser", "Futures", "Tie No Bet"]
-STATUSES = ["Pending", "Won", "Lost", "Voided", "Partial"]
+STATUSES = ["Won", "Lost"]
 SOCCER_LEAGUES = ["Premier League (England)", "La Liga (Spain)", "Serie A (Italy)", "Bundesliga (Germany)", "Ligue 1 (France)", "Other"]
 
 # Soccer teams by league
@@ -86,7 +86,7 @@ def initialize_file():
         wb.save(FILE_NAME)
         print("Created new weekly_bids.xlsx file.")
 
-def add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, status="Pending", payout_amount="", notes=""):
+def add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, status, payout_amount="", notes=""):
     """Append a new bid entry to the XLSX and apply styling."""
     date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     prob_team_1 = convert_odds_to_probability(odds_team_1)
