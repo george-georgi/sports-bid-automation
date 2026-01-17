@@ -86,12 +86,22 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ```
 sports-bid-automation/
-├── main.py                 # GUI application with tkinter interface
-├── styles.py              # Excel formatting and styling functions
-├── weekly_bids.xlsx       # Generated Excel file with bet data
-├── README.md              # This file
-└── __pycache__/           # Python cache directory
+├── main.py                 # Entry point - launches the application
+├── gui.py                  # BidTrackerGUI class - handles all UI logic
+├── data.py                 # Excel operations and odds calculations
+├── constants.py            # All dropdown options and team data
+├── styles.py               # Excel formatting and styling functions
+├── weekly_bids.xlsx        # Generated Excel file with bet data
+├── README.md               # This file
+└── __pycache__/            # Python cache directory
 ```
+
+### File Descriptions
+
+- **main.py**: Simple entry point that initializes and runs the GUI
+- **gui.py**: Contains the `BidTrackerGUI` class with all UI components, event handlers, and form validation
+- **data.py**: Handles Excel file operations (`initialize_file()`, `add_bid_to_excel()`) and odds-to-probability conversion
+- **constants.py**: Centralized configuration including leagues, bet types, statuses, and complete soccer team rosters
 
 ## Data Fields
 
@@ -137,13 +147,17 @@ sports-bid-automation/
 
 ### Customizing Options
 
-Edit the list variables in `main.py` to customize:
+Edit the configuration in `constants.py`:
 
-- **LEAGUES**: Available sports leagues (default includes 10 leagues)
+- **LEAGUES**: Available sports leagues (currently 10 leagues)
 - **BET_TYPES**: Types of bets available (Moneyline, Spread, Over/Under, Parlay, Prop, Teaser, Futures, Tie No Bet)
 - **STATUSES**: Bet outcomes (Won, Lost)
 - **SOCCER_LEAGUES**: European soccer leagues
 - **Team lists**: Soccer teams for each league (PREMIER_LEAGUE_TEAMS, LA_LIGA_TEAMS, SERIE_A_TEAMS, BUNDESLIGA_TEAMS, LIGUE_1_TEAMS)
+
+For GUI logic modifications, edit `gui.py` (BidTrackerGUI class).
+
+For Excel operations, modify functions in `data.py` (convert_odds_to_probability, initialize_file, add_bid_to_excel).
 
 ### Excel Styling
 
