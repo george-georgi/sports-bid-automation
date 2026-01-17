@@ -5,8 +5,7 @@ FILE_NAME = "weekly_bids.csv"
 
 # Dropdown options
 LEAGUES = ["NFL", "NBA", "MLB", "NHL", "Soccer", "College Football", "College Basketball", "MMA", "Boxing", "Other"]
-BET_TYPES = ["Moneyline", "Spread", "Over/Under", "Parlay", "Prop", "Teaser", "Futures"]
-SPORTSBOOKS = ["King Draft", "DraftKings", "FanDuel", "BetMGM", "Caesars", "WynnBET", "Draftkings Sportsbook", "Other"]
+BET_TYPES = ["Moneyline", "Spread", "Over/Under", "Parlay", "Prop", "Teaser", "Futures", "Tie No Bet"]
 STATUSES = ["Pending", "Won", "Lost", "Voided", "Partial"]
 SOCCER_LEAGUES = ["Premier League (England)", "La Liga (Spain)", "Serie A (Italy)", "Bundesliga (Germany)", "Ligue 1 (France)", "Other"]
 
@@ -62,11 +61,12 @@ def initialize_file():
     except FileExistsError:
         pass
 
-def add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, sportsbook, status="Pending", payout_amount="", notes=""):
+def add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, status="Pending", payout_amount="", notes=""):
     """Append a new bid entry to the CSV."""
     date = datetime.now().strftime("%Y-%m-%d")
     prob_team_1 = convert_odds_to_probability(odds_team_1)
     prob_team_2 = convert_odds_to_probability(odds_team_2)
+    sportsbook = "DraftKings Sportsbook"
     
     with open(FILE_NAME, "a", newline="") as f:
         writer = csv.writer(f)
@@ -106,12 +106,11 @@ def main():
     bet_amount = float(input("Bet amount: $"))
     odds_team_1 = input("Odds for Team 1 (decimal format, e.g., 1.95): ")
     odds_team_2 = input("Odds for Team 2 (decimal format, e.g., 1.95): ")
-    sportsbook = display_menu(SPORTSBOOKS, "Select Sportsbook:")
     status = display_menu(STATUSES, "Select Status:")
     payout_amount = input("Payout amount (optional): ")
     notes = input("Notes (optional): ")
 
-    add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, sportsbook, status, payout_amount, notes)
+    add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, status, payout_amount, notes)
 
 if __name__ == "__main__":
     main()
