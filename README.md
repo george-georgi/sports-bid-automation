@@ -15,7 +15,7 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ## Features
 
-- **Dual Interface**: Use GUI (recommended) or command-line interface
+- **Professional GUI Interface**: User-friendly graphical interface with tkinter
 - **Multi-League Support**: Track bets across NFL, NBA, MLB, NHL, Soccer, College Football, Basketball, MMA, and Boxing
 - **Dropdown Menus**: Standardized data entry with pre-defined options to prevent errors
 - **Soccer League Integration**: Dedicated team selection for 5 major European soccer leagues
@@ -56,44 +56,28 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ## Usage
 
-### Option 1: Graphical User Interface (Recommended)
-
-1. **Run the GUI application**:
-   ```bash
-   python gui.py
-   ```
-
-2. **Enter your bet details** using the intuitive form:
-   - Select league from dropdown
-   - Choose team names (with dropdowns for soccer leagues)
-   - Enter bet description, type, and amount
-   - Input odds in decimal format
-   - Select status (Won or Lost)
-   - Optionally add payout amount and notes
-
-3. **Click Submit** to save your bet
-   - Form validates all required fields
-   - Success message confirms entry
-   - Click "Clear" to enter another bet
-
-### Option 2: Command Line Interface
-
-1. **Run the CLI application**:
+1. **Launch the application**:
    ```bash
    python main.py
    ```
 
-2. **Follow the interactive prompts**:
-   - Select league from numbered menu
-   - If Soccer is selected, choose the specific league and teams
-   - Enter bet details (description, type, amount)
-   - Input odds in decimal format (e.g., 1.95)
+2. **Enter your bet details** using the intuitive GUI form:
+   - Select league from dropdown menu
+   - Choose team names (with dropdowns for soccer leagues)
+   - Enter bet description and select bet type
+   - Input bet amount and odds in decimal format
    - Select status (Won or Lost)
-   - Add optional payout amount and notes
+   - Optionally add payout amount and notes
 
-3. **View results**:
-   - All entries are saved to `weekly_bids.xlsx`
-   - Open the file in Excel to view professionally formatted data
+3. **Submit your bet**:
+   - Click "Submit Bet" to save your entry
+   - Form validates all required fields before submission
+   - Success message confirms the entry was added
+   - Click "Clear" to reset the form and enter another bet
+
+4. **View results**:
+   - All entries are automatically saved to `weekly_bids.xlsx`
+   - Open the file in Excel to view professionally formatted data with color coding and statistics
 
 ## Project Structure
 
@@ -115,13 +99,11 @@ sports-bid-automation/
 | Date | Entry date and time | 2026-01-17 14:35:42 |
 | League | Sports league | Premier League (England) |
 | Team 1 Name | First team in matchup | Real Madrid |
-| Team 2 Name | Second team in matchup | Barcelona |
-| Bet Description | Specific bet details | Team 1 to win |
-| Bet Type | Type of wager | Moneyline, Spread, Over/Under, etc. |
-| Bet Amount | Amount wagered | $50.00 |
-| Odds Team 1 | Decimal odds for Team 1 | 1.95 |
-| Odds Team 2 | Decimal odds for Team 2 | 1.85 |
-| Implied Prob Team 1 % | Calculated probability for Team 1 | 51.28% |
+| Team 2 Name | Second team inGUI application with tkinter interface
+├── styles.py              # Excel formatting and styling functions
+├── weekly_bids.xlsx       # Generated Excel file with bet data
+├── README.md              # This file
+└── __pycache__/           # Python cache directory | 51.28% |
 | Implied Prob Team 2 % | Calculated probability for Team 2 | 54.05% |
 | Sportsbook | Betting platform | DraftKings Sportsbook |
 | Status | Bet outcome | Won, Lost |
@@ -185,3 +167,10 @@ This project is open source and available for personal use.
 ## Support
 
 For issues or suggestions, please update the code and test locally before committing changes.
+Form Validation**: The GUI validates all required fields before submission - follow error messages for guidance
+2. **Consistency**: Use the same bet type and league names each time for better tracking and analysis
+3. **Odds Format**: Always enter odds in decimal format (e.g., 1.95, 2.50)
+4. **Description**: Be specific in bet descriptions for easy tracking and future reference
+5. **Soccer Teams**: When selecting Soccer, first choose the specific league, then select teams from the dropdown
+6. **Regular Review**: Check your Excel file regularly to analyze win/loss ratios and refine strategies
+7. **Payout Tracking**: Record actual payouts to verify odds calculation accuracy
