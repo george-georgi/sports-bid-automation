@@ -3,3 +3,6 @@
 
 # Ignore all HTML files
 *.html
+
+# Ignore Python cache folder
+__pycache__/
