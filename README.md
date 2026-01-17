@@ -15,6 +15,7 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ## Features
 
+- **Dual Interface**: Use GUI (recommended) or command-line interface
 - **Multi-League Support**: Track bets across NFL, NBA, MLB, NHL, Soccer, College Football, Basketball, MMA, and Boxing
 - **Dropdown Menus**: Standardized data entry with pre-defined options to prevent errors
 - **Soccer League Integration**: Dedicated team selection for 5 major European soccer leagues
@@ -26,6 +27,8 @@ A comprehensive Python-based application for tracking and managing sports bets a
   - Professional header styling with borders
 - **Timestamp Tracking**: Records exact date and time of each bet entry
 - **Comprehensive Data Fields**: 15 columns capturing all essential betting information
+- **Form Validation**: GUI validates all inputs before submission with helpful error messages
+- **User-Friendly Design**: Clean, intuitive interface for quick bet entry
 
 ## Requirements
 
@@ -53,13 +56,35 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ## Usage
 
-1. **Run the application**:
+### Option 1: Graphical User Interface (Recommended)
+
+1. **Run the GUI application**:
+   ```bash
+   python gui.py
+   ```
+
+2. **Enter your bet details** using the intuitive form:
+   - Select league from dropdown
+   - Choose team names (with dropdowns for soccer leagues)
+   - Enter bet description, type, and amount
+   - Input odds in decimal format
+   - Select status (Won or Lost)
+   - Optionally add payout amount and notes
+
+3. **Click Submit** to save your bet
+   - Form validates all required fields
+   - Success message confirms entry
+   - Click "Clear" to enter another bet
+
+### Option 2: Command Line Interface
+
+1. **Run the CLI application**:
    ```bash
    python main.py
    ```
 
-2. **Follow the prompts**:
-   - Select league from dropdown menu
+2. **Follow the interactive prompts**:
+   - Select league from numbered menu
    - If Soccer is selected, choose the specific league and teams
    - Enter bet details (description, type, amount)
    - Input odds in decimal format (e.g., 1.95)
@@ -74,7 +99,8 @@ A comprehensive Python-based application for tracking and managing sports bets a
 
 ```
 sports-bid-automation/
-├── main.py                 # Core application logic
+├── main.py                 # Core CLI application logic
+├── gui.py                  # Graphical user interface (recommended)
 ├── styles.py              # Excel formatting and styling functions
 ├── weekly_bids.xlsx       # Generated Excel file with bet data
 ├── .gitignore             # Git ignore configuration
@@ -145,11 +171,12 @@ Modify `styles.py` to adjust:
 
 ## Tips for Best Results
 
-1. **Consistency**: Use the same bet type and league names each time
-2. **Odds Format**: Always enter odds in decimal format (e.g., 1.95, 2.50)
-3. **Description**: Be specific in bet descriptions for easy tracking
-4. **Regular Review**: Check your Excel file regularly to analyze win/loss ratios
-5. **Payout Tracking**: Record actual payouts to track accuracy of odds calculations
+1. **Use the GUI**: The graphical interface is more user-friendly and provides real-time validation
+2. **Consistency**: Use the same bet type and league names each time
+3. **Odds Format**: Always enter odds in decimal format (e.g., 1.95, 2.50)
+4. **Description**: Be specific in bet descriptions for easy tracking
+5. **Regular Review**: Check your Excel file regularly to analyze win/loss ratios
+6. **Payout Tracking**: Record actual payouts to track accuracy of odds calculations
 
 ## License
 
