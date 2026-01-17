@@ -1,7 +1,9 @@
 import csv
 from datetime import datetime
+from openpyxl import Workbook, load_workbook
+from styles import style_workbook
 
-FILE_NAME = "weekly_bids.csv"
+FILE_NAME = "weekly_bids.xlsx"
 
 # Dropdown options
 LEAGUES = ["NFL", "NBA", "MLB", "NHL", "Soccer", "College Football", "College Basketball", "MMA", "Boxing", "Other"]
@@ -47,58 +49,79 @@ def convert_odds_to_probability(odds):
         return None
 
 def initialize_file():
-    """Create the CSV with headers if it doesn't exist."""
+    """Create the XLSX with headers if it doesn't exist."""
     try:
-        with open(FILE_NAME, "x", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow([
-                "date",
-                "league",
-                "team_1_name",
-                "team_2_name",
-                "bet_description",
-                "bet_type",
-                "bet_amount",
-                "odds_team_1",
-                "odds_team_2",
-                "implied_prob_team_1",
-                "implied_prob_team_2",
-                "sportsbook",
-                "status",
-                "payout_amount",
-                "notes"
-            ])
-            print("Created new weekly_bids.csv file.")
-    except FileExistsError:
-        pass
+        # Try to open existing file
+        load_workbook(FILE_NAME)
+    except FileNotFoundError:
+        # Create new workbook
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Bids"
+        
+        # Write headers
+        headers = [
+            "date",
+            "league",
+            "team_1_name",
+            "team_2_name",
+            "bet_description",
+            "bet_type",
+            "bet_amount",
+            "odds_team_1",
+            "odds_team_2",
+            "implied_prob_team_1",
+            "implied_prob_team_2",
+            "sportsbook",
+            "status",
+            "payout_amount",
+            "notes"
+        ]
+        ws.append(headers)
+        
+        # Apply styling
+        style_workbook(ws)
+        
+        # Save file
+        wb.save(FILE_NAME)
+        print("Created new weekly_bids.xlsx file.")
 
 def add_bid(league, team_1_name, team_2_name, bet_description, bet_type, bet_amount, odds_team_1, odds_team_2, status="Pending", payout_amount="", notes=""):
-    """Append a new bid entry to the CSV."""
+    """Append a new bid entry to the XLSX and apply styling."""
     date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     prob_team_1 = convert_odds_to_probability(odds_team_1)
     prob_team_2 = convert_odds_to_probability(odds_team_2)
     sportsbook = "DraftKings Sportsbook"
     
-    with open(FILE_NAME, "a", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            date,
-            league,
-            team_1_name,
-            team_2_name,
-            bet_description,
-            bet_type,
-            bet_amount,
-            odds_team_1,
-            odds_team_2,
-            prob_team_1,
-            prob_team_2,
-            sportsbook,
-            status,
-            payout_amount,
-            notes
-        ])
-    print(f"Bid added: {team_1_name} vs {team_2_name} ({bet_description}) - {bet_amount} on {sportsbook}.")
+    # Load workbook
+    wb = load_workbook(FILE_NAME)
+    ws = wb.active
+    
+    # Append row
+    ws.append([
+        date,
+        league,
+        team_1_name,
+        team_2_name,
+        bet_description,
+        bet_type,
+        bet_amount,
+        odds_team_1,
+        odds_team_2,
+        prob_team_1,
+        prob_team_2,
+        sportsbook,
+        status,
+        payout_amount,
+        notes
+    ])
+    
+    # Apply styling to entire worksheet
+    style_workbook(ws)
+    
+    # Save file
+    wb.save(FILE_NAME)
+    print(f"Bid added: {team_1_name} vs {team_2_name} ({bet_description}) - ${bet_amount} on {sportsbook}.")
 
 def main():
     initialize_file()
